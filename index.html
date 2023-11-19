@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Birthday Wishes</title>
+  <title>Happy Birthday, Vlad!</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -16,49 +16,57 @@
       justify-content: center;
       height: 100vh;
     }
-    #birthdayWish {
+    .wish-line {
       font-size: 24px;
       color: #3498db;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid #3498db;
-      animation: typing 2s steps(30) infinite;
+      margin-bottom: 20px;
     }
-    @keyframes typing {
-      0% {
-        width: 0;
-      }
-      100% {
-        width: 100%;
-      }
+    .starting-letter {
+      font-weight: bold;
+      font-size: 30px;
+      color: #e74c3c;
+      display: inline-block;
+      margin-right: 5px;
     }
   </style>
 </head>
 <body>
   <div>
-    <h1 id="birthdayWish"></h1>
+    <div id="birthdayWish" class="wish-line"></div>
   </div>
   <script>
-    const birthdayWish = ["Happy Birthday Vlad!", "Let joy and laughter surround you!", "Achieve new coding heights!", "Dive into amazing adventures!"];
+    const birthdayWish = [
+      "Vlad, the greatest!",
+      "Let joy and laughter surround you!",
+      "Achieve new coding heights!",
+      "Dive into amazing adventures!",
+      "HAPPY BIRTHDAY!!!"
+    ];
     const wishElement = document.getElementById("birthdayWish");
     let currentWishIndex = 0;
     function typeWish() {
-      wishElement.textContent = "";
       let index = 0;
+      const currentWish = birthdayWish[currentWishIndex];
       function typeLetter() {
-        wishElement.textContent += birthdayWish[currentWishIndex][index];
+        const currentChar = currentWish[index];
+        if (index === 0) {
+          wishElement.innerHTML += `<span class="starting-letter">${currentChar}</span>`;
+        } else {
+          wishElement.textContent += currentChar;
+        }
         index++;
-        if (index < birthdayWish[currentWishIndex].length) {
+        if (index < currentWish.length) {
           setTimeout(typeLetter, 100);
         } else {
           // Move to the next wish after a brief pause
-          setTimeout(nextWish, 1000);
+          setTimeout(nextWish, 1500);
         }
       }
       typeLetter();
     }
     function nextWish() {
       currentWishIndex = (currentWishIndex + 1) % birthdayWish.length;
+      wishElement.innerHTML += '<div class="wish-line"></div>';
       typeWish();
     }
     typeWish();
