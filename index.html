@@ -29,7 +29,7 @@
     .starting-letter {
       font-weight: bold;
       font-size: 24px;
-      color: #e74c3c;
+      color: #e74c3c; /* Different color for starting letters */
       margin-right: 5px;
     }
   </style>
@@ -44,7 +44,7 @@
       "Let joy and laughter surround you!",
       "Achieve new coding heights!",
       "Dive into amazing adventures!",
-      "HAPPY BIRTHDAY!"
+      "Happy B-day!"
     ];
     const wishContainer = document.getElementById("birthdayWish");
     let currentWishIndex = 0;
@@ -67,10 +67,16 @@
         if (index < currentWish.length) {
           setTimeout(typeLetter, 100);
         } else {
+          // Move to the next wish after a brief pause
+          setTimeout(nextWish, 1500);
         }
       }
       wishContainer.appendChild(wishLine);
       typeLetter();
+    }
+    function nextWish() {
+      currentWishIndex = (currentWishIndex + 1) % birthdayWish.length;
+      typeWish();
     }
     typeWish();
   </script>
