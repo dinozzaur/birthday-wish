@@ -36,15 +36,15 @@
 </head>
 <body>
   <div class="wish-container" id="birthdayWish">
-    <div class="wish-line"></div>
+    <!-- Wishes will be dynamically added here -->
   </div>
   <script>
     const birthdayWish = [
-      "Vibrant, valuable, versatile!",
+      "Vibrant, Valuable, Versatile!",
       "Let joy and laughter surround you!",
       "Achieve new coding heights!",
       "Dive into amazing adventures!",
-      "Happy B-day!"
+      "Happy Birthday!"
     ];
     const wishContainer = document.getElementById("birthdayWish");
     let currentWishIndex = 0;
@@ -55,7 +55,7 @@
       let index = 0;
       function typeLetter() {
         const currentChar = currentWish[index];
-        if (index === 0) {
+        if (index === 0 && !wishLine.querySelector('.starting-letter')) {
           const startingLetter = document.createElement("span");
           startingLetter.classList.add("starting-letter");
           startingLetter.textContent = currentChar;
@@ -78,14 +78,8 @@
       currentWishIndex = (currentWishIndex + 1) % birthdayWish.length;
       typeWish();
     }
+    // Start typing the wishes
     typeWish();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
