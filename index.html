@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Birthday Wishes</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    #birthdayWish {
+      font-size: 24px;
+      color: #3498db;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #3498db;
+      animation: typing 2s steps(30) infinite;
+    }
+    @keyframes typing {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1 id="birthdayWish"></h1>
+  </div>
+  <script>
+    const birthdayWish = ["Happy Birthday Vlad!", "Let joy and laughter surround you!", "Achieve new coding heights!", "Dive into amazing adventures!"];
+    const wishElement = document.getElementById("birthdayWish");
+    let currentWishIndex = 0;
+    function typeWish() {
+      wishElement.textContent = "";
+      let index = 0;
+      function typeLetter() {
+        wishElement.textContent += birthdayWish[currentWishIndex][index];
+        index++;
+        if (index < birthdayWish[currentWishIndex].length) {
+          setTimeout(typeLetter, 100);
+        } else {
+          // Move to the next wish after a brief pause
+          setTimeout(nextWish, 1000);
+        }
+      }
+      typeLetter();
+    }
+    function nextWish() {
+      currentWishIndex = (currentWishIndex + 1) % birthdayWish.length;
+      typeWish();
+    }
+    typeWish();
+  </script>
+</body>
+</html>
